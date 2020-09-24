@@ -145,6 +145,7 @@ func (n *NamespaceHttpHandler) HandleCreateNamespace(c *gin.Context) {
 		return
 	}
 
+	logutil.BgLogger().Info("create namespace success", zap.String("namespace", ns))
 	c.JSON(http.StatusOK, CreateSuccessJsonResp())
 }
 
@@ -161,6 +162,7 @@ func (n *NamespaceHttpHandler) HandleRemoveNamespace(c *gin.Context) {
 		return
 	}
 
+	logutil.BgLogger().Info("remove namespace success", zap.String("namespace", ns))
 	c.JSON(http.StatusOK, CreateSuccessJsonResp())
 }
 
@@ -220,6 +222,7 @@ func (n *NamespaceHttpHandler) HandlePrepareReload(c *gin.Context) {
 		}
 	}
 
+	logutil.BgLogger().Info("prepare reload success", zap.Int("reloadType", reloadType), zap.String("namespace", ns))
 	c.JSON(http.StatusOK, CreateSuccessJsonResp())
 }
 
@@ -271,6 +274,7 @@ func (n *NamespaceHttpHandler) HandleCommitReload(c *gin.Context) {
 		}
 	}
 
+	logutil.BgLogger().Info("commit reload success", zap.Int("reloadType", reloadType), zap.String("namespace", ns))
 	c.JSON(http.StatusOK, CreateSuccessJsonResp())
 }
 
