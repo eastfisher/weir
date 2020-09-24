@@ -275,7 +275,7 @@ func (n *NamespaceHttpHandler) HandleCommitReload(c *gin.Context) {
 }
 
 func isValidReloadType(t int) bool {
-	return t == ReloadTypeFrontend || t == ReloadTypeBackend
+	return t == ReloadTypeFrontend || t == ReloadTypeBackend || t == ReloadTypeAll
 }
 
 func CreateJsonResp(code int, msg string) CommonJsonResp {
