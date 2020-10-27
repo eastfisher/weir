@@ -8,6 +8,9 @@ import (
 	"github.com/pingcap-incubator/weir/pkg/proxy/driver"
 	"github.com/pingcap-incubator/weir/pkg/proxy/namespace"
 	"github.com/pingcap-incubator/weir/pkg/proxy/server"
+	"github.com/pingcap/errors"
+	"github.com/pingcap/log"
+	"github.com/pingcap/tidb/util/logutil"
 )
 
 type Proxy struct {
@@ -25,6 +28,10 @@ func NewProxy(cfg *config.Proxy) *Proxy {
 }
 
 func (p *Proxy) Init() error {
+	if err := p.initLogger(); err != nil {
+		return errors.WithMessage(err, "init logger error")
+	}
+
 	cc, err := configcenter.CreateConfigCenter(p.cfg.ConfigCenter)
 	if err != nil {
 		return err
@@ -56,6 +63,20 @@ func (p *Proxy) Init() error {
 	p.apiServer = apiServer
 
 	return nil
+}
+
+func (p *Proxy) initLogger() error {
+	proxyLogCfg := p.cfg.Log
+	lgFileCfg := logutil.FileLogConfig{
+		FileLogConfig: log.FileLogConfig{
+			Filename:   proxyLogCfg.LogFile.Filename,
+			MaxSize:    proxyLogCfg.LogFile.MaxSize,
+			MaxDays:    proxyLogCfg.LogFile.MaxDays,
+			MaxBackups: proxyLogCfg.LogFile.MaxBackups,
+		},
+	}
+	lgCfg := logutil.NewLogConfig(proxyLogCfg.Level, proxyLogCfg.Format, "", lgFileCfg, false)
+	return logutil.InitLogger(lgCfg)
 }
 
 // TODO(eastfisher): refactor this function
