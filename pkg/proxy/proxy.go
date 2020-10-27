@@ -31,6 +31,7 @@ func (p *Proxy) Init() error {
 	if err := p.initLogger(); err != nil {
 		return errors.WithMessage(err, "init logger error")
 	}
+	logutil.BgLogger().Info("proxy init logger success")
 
 	cc, err := configcenter.CreateConfigCenter(p.cfg.ConfigCenter)
 	if err != nil {
