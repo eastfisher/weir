@@ -11,7 +11,7 @@ import (
 var (
 	QueryTotalCounter = prometheus.NewCounterVec(
 		prometheus.CounterOpts{
-			Namespace: "tidb",
+			Namespace: "weirproxy",
 			Subsystem: "server",
 			Name:      "query_total",
 			Help:      "Counter of queries.",
@@ -19,7 +19,7 @@ var (
 
 	ExecuteErrorCounter = prometheus.NewCounterVec(
 		prometheus.CounterOpts{
-			Namespace: "tidb",
+			Namespace: "weirproxy",
 			Subsystem: "server",
 			Name:      "execute_error_total",
 			Help:      "Counter of execute errors.",
@@ -27,7 +27,7 @@ var (
 
 	CriticalErrorCounter = prometheus.NewCounter(
 		prometheus.CounterOpts{
-			Namespace: "tidb",
+			Namespace: "weirproxy",
 			Subsystem: "server",
 			Name:      "critical_error_total",
 			Help:      "Counter of critical errors.",
@@ -35,7 +35,7 @@ var (
 
 	ConnGauge = prometheus.NewGauge(
 		prometheus.GaugeOpts{
-			Namespace: "tidb",
+			Namespace: "weirproxy",
 			Subsystem: "server",
 			Name:      "connections",
 			Help:      "Number of connections.",
@@ -48,15 +48,15 @@ var (
 	EventClose         = "close"
 	ServerEventCounter = prometheus.NewCounterVec(
 		prometheus.CounterOpts{
-			Namespace: "tidb",
+			Namespace: "weirproxy",
 			Subsystem: "server",
 			Name:      "event_total",
-			Help:      "Counter of tidb-server event.",
+			Help:      "Counter of weirproxy-server event.",
 		}, []string{LblType})
 
 	GetTokenDurationHistogram = prometheus.NewHistogram(
 		prometheus.HistogramOpts{
-			Namespace: "tidb",
+			Namespace: "weirproxy",
 			Subsystem: "server",
 			Name:      "get_token_duration_seconds",
 			Help:      "Duration (us) for getting token, it should be small until concurrency limit is reached.",
@@ -65,7 +65,7 @@ var (
 
 	HandShakeErrorCounter = prometheus.NewCounter(
 		prometheus.CounterOpts{
-			Namespace: "tidb",
+			Namespace: "weirproxy",
 			Subsystem: "server",
 			Name:      "handshake_error_total",
 			Help:      "Counter of hand shake error.",
