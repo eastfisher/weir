@@ -23,11 +23,11 @@ import (
 	"unsafe"
 
 	"github.com/pingcap-incubator/weir/pkg/config"
+	"github.com/pingcap-incubator/weir/pkg/metrics"
 	"github.com/pingcap/errors"
 	"github.com/pingcap/parser/mysql"
 	"github.com/pingcap/parser/terror"
 	"github.com/pingcap/tidb/errno"
-	"github.com/pingcap/tidb/metrics"
 	"github.com/pingcap/tidb/util/fastrand"
 	"github.com/pingcap/tidb/util/logutil"
 	"go.uber.org/zap"

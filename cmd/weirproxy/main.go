@@ -10,6 +10,7 @@ import (
 	"syscall"
 
 	"github.com/pingcap-incubator/weir/pkg/config"
+	"github.com/pingcap-incubator/weir/pkg/metrics"
 	"github.com/pingcap-incubator/weir/pkg/proxy"
 	"github.com/pingcap/tidb/util/logutil"
 	"go.uber.org/zap"
@@ -32,6 +33,8 @@ func main() {
 		fmt.Printf("parse config file error: %v\n", err)
 		os.Exit(1)
 	}
+
+	metrics.RegisterProxyMetrics()
 
 	p := proxy.NewProxy(proxyCfg)
 

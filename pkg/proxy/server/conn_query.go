@@ -22,9 +22,9 @@ import (
 	"time"
 
 	"github.com/opentracing/opentracing-go"
+	"github.com/pingcap-incubator/weir/pkg/metrics"
 	"github.com/pingcap/parser/mysql"
 	"github.com/pingcap/tidb/executor"
-	"github.com/pingcap/tidb/metrics"
 	"github.com/pingcap/tidb/sessionctx/variable"
 	"github.com/pingcap/tidb/util/hack"
 )
